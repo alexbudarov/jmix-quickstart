@@ -16,6 +16,16 @@
                 </query>
             </loader>
         </collection>
+        <collection id="spentTimeItemsDc" class="com.company.jmixpm.entity.SpentTimeItem">
+            <fetchPlan extends="_base">
+                <property name="user" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="spentTimeItemsDl">
+                <query>
+                    <![CDATA[select e from SpentTimeItem e where e.task = :container_tasksDc]]>
+                </query>
+            </loader>
+        </collection>
     </data>
     <facets>
         <dataLoadCoordinator auto="true"/>
@@ -33,34 +43,58 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="tasksTable" spacing="true">
-        <filter id="filter"
-                dataLoader="tasksDl">
-            <properties include=".*"/>
-        </filter>
-        <groupTable id="tasksTable"
-                    width="100%"
-                    dataContainer="tasksDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
-            <columns>
-                <column id="name"/>
-                <column id="assignee"/>
-                <column id="startDate"/>
-                <column id="estimatedEfforts"/>
-                <column id="project"/>
-            </columns>
-            <simplePagination/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="tasksTable.create"/>
-                <button id="editBtn" action="tasksTable.edit"/>
-                <button id="removeBtn" action="tasksTable.remove"/>
-            </buttonsPanel>
-        </groupTable>
+    <layout expand="split" spacing="true">
+        <split id="split" orientation="horizontal" width="100%">
+            <vbox spacing="true" margin="false,true,false,false">
+                <filter id="filter"
+                        dataLoader="tasksDl">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="tasksTable"
+                            width="100%"
+                            dataContainer="tasksDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="assignee"/>
+                        <column id="startDate"/>
+                        <column id="estimatedEfforts"/>
+                        <column id="project"/>
+                    </columns>
+                    <simplePagination/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="tasksTable.create"/>
+                        <button id="editBtn" action="tasksTable.edit"/>
+                        <button id="removeBtn" action="tasksTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </vbox>
+            <vbox spacing="true" margin="false,false,false,true" expand="spentTimeItemsTable" height="100%">
+                <label value="msg://spentTime.value" stylename="h2"/>
+                <table id="spentTimeItemsTable" width="100%" dataContainer="spentTimeItemsDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <buttonsPanel alwaysVisible="true">
+                        <button id="spentTimeItemsTableCreateBtn" action="spentTimeItemsTable.create"/>
+                        <button id="spentTimeItemsTableEditBtn" action="spentTimeItemsTable.edit"/>
+                        <button id="spentTimeItemsTableRemoveBtn" action="spentTimeItemsTable.remove"/>
+                    </buttonsPanel>
+                    <columns>
+                        <column id="user"/>
+                        <column id="date"/>
+                        <column id="minutesSpent"/>
+                    </columns>
+                </table>
+            </vbox>
+        </split>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
