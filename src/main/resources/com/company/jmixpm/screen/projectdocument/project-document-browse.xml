@@ -52,6 +52,7 @@
                 <column id="project.manager"/>
                 <column id="file"/>
                 <column id="notes"/>
+                <column id="createdBy"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
