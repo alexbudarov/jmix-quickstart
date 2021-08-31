@@ -34,4 +34,14 @@
       </entry>
     </moduleSettings>
   </component>
+  <component name="JmixLiquibaseChangesConfig">
+    <exclude-change idName="SPENT_TIME_ITEM" tagName="dropTable" />
+  </component>
+  <component name="VersionUpdateSettings">
+    <option name="ignoredVersions">
+      <set>
+        <option value="1.0.1" />
+      </set>
+    </option>
+  </component>
 </project>

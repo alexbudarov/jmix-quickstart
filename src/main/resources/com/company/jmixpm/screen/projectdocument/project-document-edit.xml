@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
-        caption="msg://spentTimeItemEdit.caption"
+        caption="msg://projectDocumentEdit.caption"
         focusComponent="form">
     <data>
-        <instance id="spentTimeItemDc"
-                  class="com.company.jmixpm.entity.SpentTimeItem">
+        <instance id="projectDocumentDc"
+                  class="com.company.jmixpm.entity.ProjectDocument">
             <fetchPlan extends="_base">
-                <property name="task" fetchPlan="_base"/>
-                <property name="user" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
         </instance>
@@ -30,22 +29,16 @@
                 modal="true"
                 forceDialog="true"/>
     <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="spentTimeItemDc">
+        <form id="form" dataContainer="projectDocumentDc">
             <column width="350px">
-                <entityPicker id="taskField" property="task">
+                <entityPicker id="projectField" property="project">
                     <actions>
                         <action id="entityLookup" type="entity_lookup"/>
                         <action id="entityClear" type="entity_clear"/>
                     </actions>
                 </entityPicker>
-                <entityPicker id="userField" property="user">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
-                <dateField id="dateField" property="date"/>
-                <textField id="minutesSpentField" property="minutesSpent"/>
+                <fileStorageUpload id="fileField" property="file"/>
+                <textArea id="notesField" property="notes" rows="5"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

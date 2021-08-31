@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://jmix.io/schema/ui/window"
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
-        caption="msg://taskBrowse.caption"
-        focusComponent="tasksTable">
+        caption="msg://projectDocumentBrowse.caption"
+        focusComponent="projectDocumentsTable">
     <data readOnly="true">
-        <collection id="tasksDc"
-                    class="com.company.jmixpm.entity.Task">
+        <collection id="projectDocumentsDc"
+                    class="com.company.jmixpm.entity.ProjectDocument">
             <fetchPlan extends="_base">
-                <property name="assignee" fetchPlan="_base"/>
-                <property name="project" fetchPlan="_base"/>
+                <property name="project" fetchPlan="_base">
+                    <property name="manager" fetchPlan="_base"/>
+                </property>
             </fetchPlan>
-            <loader id="tasksDl">
+            <loader id="projectDocumentsDl">
                 <query>
-                    <![CDATA[select e from Task_ e]]>
+                    <![CDATA[select e from ProjectDocument e]]>
                 </query>
             </loader>
         </collection>
@@ -33,32 +34,31 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="tasksTable" spacing="true">
+    <layout expand="projectDocumentsTable" spacing="true">
         <filter id="filter"
-                dataLoader="tasksDl">
+                dataLoader="projectDocumentsDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="tasksTable"
+        <groupTable id="projectDocumentsTable"
                     width="100%"
-                    dataContainer="tasksDc">
+                    dataContainer="projectDocumentsDc">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
-                <column id="assignee"/>
-                <column id="startDate"/>
-                <column id="estimatedEfforts"/>
                 <column id="project"/>
+                <column id="project.manager"/>
+                <column id="file"/>
+                <column id="notes"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="tasksTable.create"/>
-                <button id="editBtn" action="tasksTable.edit"/>
-                <button id="removeBtn" action="tasksTable.remove"/>
+                <button id="createBtn" action="projectDocumentsTable.create"/>
+                <button id="editBtn" action="projectDocumentsTable.edit"/>
+                <button id="removeBtn" action="projectDocumentsTable.remove"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

@@ -1,7 +1,7 @@
 package com.company.jmixpm.security;
 
 import com.company.jmixpm.entity.Project;
-import com.company.jmixpm.entity.SpentTimeItem;
+import com.company.jmixpm.entity.ProjectDocument;
 import com.company.jmixpm.entity.Task;
 import com.company.jmixpm.entity.User;
 import io.jmix.security.model.EntityAttributePolicyAction;
@@ -22,17 +22,17 @@ public interface EmployeeRole {
     @EntityPolicy(entityClass = Task.class, actions = EntityPolicyAction.ALL)
     void task();
 
-    @ScreenPolicy(screenIds = {"Project.browse", "Task_.browse", "Project.edit", "Task_.edit", "User.browse", "SpentTimeItem.edit"})
+    @ScreenPolicy(screenIds = {"Project.browse", "Task_.browse", "Project.edit", "Task_.edit", "User.browse", "ProjectDocument.browse", "ProjectDocument.edit"})
     void screens();
 
-    @MenuPolicy(menuIds = {"Project.browse", "application", "Task_.browse", "User.browse"})
+    @MenuPolicy(menuIds = {"Project.browse", "application", "Task_.browse", "User.browse", "ProjectDocument.browse"})
     void commonMenus();
 
     @EntityAttributePolicy(entityClass = User.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = User.class, actions = EntityPolicyAction.READ)
     void user();
 
-    @EntityAttributePolicy(entityClass = SpentTimeItem.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
-    @EntityPolicy(entityClass = SpentTimeItem.class, actions = EntityPolicyAction.ALL)
-    void spentTimeItem();
+    @EntityAttributePolicy(entityClass = ProjectDocument.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
+    @EntityPolicy(entityClass = ProjectDocument.class, actions = EntityPolicyAction.ALL)
+    void projectDocument();
 }
