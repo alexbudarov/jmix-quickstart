@@ -22,14 +22,15 @@ public interface EmployeeRole {
     @EntityPolicy(entityClass = Task.class, actions = EntityPolicyAction.ALL)
     void task();
 
-    @ScreenPolicy(screenIds = {"Project.browse", "Task_.browse", "Project.edit", "Task_.edit", "User.browse", "ProjectDocument.browse", "ProjectDocument.edit"})
+    @ScreenPolicy(screenIds = {"Project.browse", "Task_.browse", "Project.edit", "Task_.edit", "User.browse", "ProjectDocument.browse", "ProjectDocument.edit", "User.edit"})
     void screens();
 
     @MenuPolicy(menuIds = {"Project.browse", "application", "Task_.browse", "User.browse", "ProjectDocument.browse"})
     void commonMenus();
 
-    @EntityAttributePolicy(entityClass = User.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
-    @EntityPolicy(entityClass = User.class, actions = EntityPolicyAction.READ)
+    @EntityAttributePolicy(entityClass = User.class, attributes = {"firstName", "lastName", "email"}, action = EntityAttributePolicyAction.MODIFY)
+    @EntityAttributePolicy(entityClass = User.class, attributes = {"id", "version", "username", "password", "active"}, action = EntityAttributePolicyAction.VIEW)
+    @EntityPolicy(entityClass = User.class, actions = {EntityPolicyAction.READ, EntityPolicyAction.UPDATE})
     void user();
 
     @EntityAttributePolicy(entityClass = ProjectDocument.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
