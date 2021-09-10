@@ -4,7 +4,7 @@ import com.company.jmixpm.entity.ProjectDocument;
 import io.jmix.security.role.annotation.JpqlRowLevelPolicy;
 import io.jmix.security.role.annotation.RowLevelRole;
 
-@RowLevelRole(name = "Restrict documents by user", code = "restricted-spent-time")
+@RowLevelRole(name = "Restrict documents by user", code = "restricted-documents")
 public interface RestrictProjectDocumentsRole {
 
     @JpqlRowLevelPolicy(

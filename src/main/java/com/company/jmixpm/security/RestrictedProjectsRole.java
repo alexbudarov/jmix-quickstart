@@ -9,7 +9,7 @@ import io.jmix.security.role.annotation.RowLevelRole;
 
 import java.util.function.Predicate;
 
-@RowLevelRole(name = "Projects are restricted for modification", code = "restricted-projects")
+@RowLevelRole(name = "Restrict projects for modification", code = "restricted-projects")
 public interface RestrictedProjectsRole {
 
     @PredicateRowLevelPolicy(
