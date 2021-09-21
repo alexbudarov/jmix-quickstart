@@ -32,6 +32,19 @@
           </option>
         </ModuleSettings>
       </entry>
+      <entry key="security-basics-draft.main">
+        <ModuleSettings>
+          <option name="dataStoreOptions">
+            <map>
+              <entry key="main">
+                <value>
+                  <DataStoreSettings />
+                </value>
+              </entry>
+            </map>
+          </option>
+        </ModuleSettings>
+      </entry>
     </moduleSettings>
   </component>
   <component name="JmixLiquibaseChangesConfig">
